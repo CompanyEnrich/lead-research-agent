@@ -4,7 +4,6 @@
 // Environment variables (set via wrangler secret):
 //   COMPANYENRICH_API_KEY - Your CompanyEnrich API key
 //   SLACK_WEBHOOK_URL    - Your Slack incoming webhook URL
-//   AUTH_TOKEN            - (optional) Bearer token to protect this endpoint
 
 const BASE_URL = "https://api.companyenrich.com";
 
@@ -460,17 +459,9 @@ async function handleRequest(request, env) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
     });
-  }
-
-  // Optional auth check
-  if (env.AUTH_TOKEN) {
-    const auth = request.headers.get("Authorization");
-    if (auth !== `Bearer ${env.AUTH_TOKEN}`) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
-    }
   }
 
   // Get email from query param or POST body

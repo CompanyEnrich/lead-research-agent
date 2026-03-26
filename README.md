@@ -55,7 +55,6 @@ Edit `wrangler.toml` and fill in the `[vars]` section:
 [vars]
 COMPANYENRICH_API_KEY = "your-api-key"
 SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/..."
-AUTH_TOKEN = ""  # optional, protects the endpoint
 ```
 
 ## Usage
@@ -82,15 +81,6 @@ All of these work too:
 {"contact_email": "john@acme.com"}
 {"user": {"mail": "john@acme.com"}}
 {"data": [{"value": "john@acme.com"}]}
-```
-
-### With auth token (if AUTH_TOKEN is set)
-
-```bash
-curl -X POST https://lead-research-agent.<your-subdomain>.workers.dev \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_AUTH_TOKEN" \
-  -d '{"email": "john@acme.com"}'
 ```
 
 ## Response format

@@ -3,6 +3,5 @@ main = "./index.js"
 compatibility_date = "2024-12-01"
 
 [vars]
-COMPANYENRICH_API_KEY = "" # Go to https://companyenrich.com/dashboard to get your API key
-SLACK_WEBHOOK_URL = "" # Go to https://api.slack.com/apps → Your App → Incoming Webhooks to get your webhook URL
-AUTH_TOKEN = "" # Set a secret token of your choice for authenticating requests
+COMPANYENRICH_API_KEY = "Go to https://companyenrich.com/dashboard to get your API key"
+SLACK_WEBHOOK_URL = "Go to https://slack.com/marketplace/A0F7XDUAZ-incomming-webhooks to setup your webhook URL"
