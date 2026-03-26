@@ -1,0 +1,8 @@
+name = "lead-research-agent"
+main = "./index.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+COMPANYENRICH_API_KEY = "xhNQGuEn2JsJy6Mz5bts5"
+SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"
+AUTH_TOKEN = ""
