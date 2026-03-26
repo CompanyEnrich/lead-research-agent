@@ -4,7 +4,8 @@
       "WebFetch(domain:companyenrich.com)",
       "WebFetch(domain:slack.com)",
       "WebFetch(domain:api.slack.com)",
-      "WebFetch(domain:docs.slack.dev)"
+      "WebFetch(domain:docs.slack.dev)",
+      "Bash(git:*)"
     ]
   }
 }

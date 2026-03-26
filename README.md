@@ -2,15 +2,32 @@
 
 Takes a lead email, runs CompanyEnrich API calls (person lookup, company enrichment, workforce data), and sends a formatted report to Slack.
 
-## Setup
+## What it does
 
-### 1. Install Wrangler
+1. Extracts domain from the email
+2. Runs 3 API calls in parallel:
+   - `POST /people/lookup` - person name, position, seniority, department, LinkedIn
+   - `GET /companies/enrich` - company name, description, categories, funding
+   - `GET /companies/workforce` - department headcount, trends
+3. Formats everything into a Slack Block Kit message
+4. Posts to Slack via webhook
+5. Returns JSON response with all parsed data
+
+## Deploy
+
+### One-click deploy
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/CompanyEnrich/lead-research-agent)
+
+### Manual deploy
+
+#### 1. Install Wrangler
 
 ```bash
 npm install -g wrangler
 ```
 
-### 2. Login to Cloudflare
+#### 2. Login to Cloudflare
 
 If you don't have a Cloudflare account, sign up at [dash.cloudflare.com](https://dash.cloudflare.com) first.
 
@@ -18,13 +35,19 @@ If you don't have a Cloudflare account, sign up at [dash.cloudflare.com](https:/
 wrangler login
 ```
 
-### 3. Get your API keys
+#### 3. Deploy
+
+```bash
+npx wrangler deploy
+```
+
+Your worker will be live at: `https://lead-research-agent.<your-subdomain>.workers.dev`
+
+### Configure
 
 **CompanyEnrich API Key:** Sign up and get your access token from the [CompanyEnrich website](https://companyenrich.com).
 
 **Slack Incoming Webhook:** Set up an incoming webhook for your Slack workspace via the [Slack Marketplace](https://slack.com/marketplace/A0F7XDUAZ-incomming-webhooks).
-
-### 4. Set your secrets
 
 Edit `wrangler.toml` and fill in the `[vars]` section:
 
@@ -34,14 +57,6 @@ COMPANYENRICH_API_KEY = "your-api-key"
 SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/..."
 AUTH_TOKEN = ""  # optional, protects the endpoint
 ```
-
-### 5. Deploy
-
-```bash
-npx wrangler deploy
-```
-
-Your worker will be live at: `https://lead-research-agent.<your-subdomain>.workers.dev`
 
 ## Usage
 
@@ -77,17 +92,6 @@ curl -X POST https://lead-research-agent.<your-subdomain>.workers.dev \
   -H "Authorization: Bearer YOUR_AUTH_TOKEN" \
   -d '{"email": "john@acme.com"}'
 ```
-
-## What it does
-
-1. Extracts domain from the email
-2. Runs 3 API calls in parallel (faster than the Python version):
-   - `POST /people/lookup` - person name, position, seniority, department, LinkedIn
-   - `GET /companies/enrich` - company name, description, categories, funding
-   - `GET /companies/workforce` - department headcount, trends
-3. Formats everything into a Slack Block Kit message
-4. Posts to Slack via webhook
-5. Returns JSON response with all parsed data
 
 ## Response format
 
