@@ -17,6 +17,7 @@ Takes a lead email, runs CompanyEnrich API calls (person lookup, company enrichm
 
 ### One-click deploy
 If you don't have a Cloudflare account, sign up at dash.cloudflare.com first.
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/CompanyEnrich/lead-research-agent)
 
 ### Manual deploy
