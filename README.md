@@ -18,7 +18,13 @@ If you don't have a Cloudflare account, sign up at [dash.cloudflare.com](https:/
 wrangler login
 ```
 
-### 3. Set your secrets
+### 3. Get your API keys
+
+**CompanyEnrich API Key:** Sign up and get your access token from the [CompanyEnrich website](https://companyenrich.com).
+
+**Slack Incoming Webhook:** Set up an incoming webhook for your Slack workspace via the [Slack Marketplace](https://slack.com/marketplace/A0F7XDUAZ-incomming-webhooks).
+
+### 4. Set your secrets
 
 Edit `wrangler.toml` and fill in the `[vars]` section:
 
@@ -29,7 +35,7 @@ SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/..."
 AUTH_TOKEN = ""  # optional, protects the endpoint
 ```
 
-### 4. Deploy
+### 5. Deploy
 
 ```bash
 npx wrangler deploy
