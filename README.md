@@ -12,16 +12,21 @@ npm install -g wrangler
 
 ### 2. Login to Cloudflare
 
+If you don't have a Cloudflare account, sign up at [dash.cloudflare.com](https://dash.cloudflare.com) first.
+
 ```bash
 wrangler login
 ```
 
 ### 3. Set your secrets
 
-```bash
-npx wrangler secret put COMPANYENRICH_API_KEY
-npx wrangler secret put SLACK_WEBHOOK_URL
-npx wrangler secret put AUTH_TOKEN          # optional, protects the endpoint
+Edit `wrangler.toml` and fill in the `[vars]` section:
+
+```toml
+[vars]
+COMPANYENRICH_API_KEY = "your-api-key"
+SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/..."
+AUTH_TOKEN = ""  # optional, protects the endpoint
 ```
 
 ### 4. Deploy
@@ -42,10 +47,20 @@ https://lead-research-agent.<your-subdomain>.workers.dev?email=john@acme.com
 
 ### POST request
 
+Send any JSON payload — the worker will automatically find the email address in your body, no matter the structure or key name.
+
 ```bash
 curl -X POST https://lead-research-agent.<your-subdomain>.workers.dev \
   -H "Content-Type: application/json" \
   -d '{"email": "john@acme.com"}'
+```
+
+All of these work too:
+
+```json
+{"contact_email": "john@acme.com"}
+{"user": {"mail": "john@acme.com"}}
+{"data": [{"value": "john@acme.com"}]}
 ```
 
 ### With auth token (if AUTH_TOKEN is set)
