@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:companyenrich.com)",
+      "WebFetch(domain:slack.com)",
+      "WebFetch(domain:api.slack.com)",
+      "WebFetch(domain:docs.slack.dev)"
+    ]
+  }
+}
