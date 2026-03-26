@@ -16,7 +16,7 @@ Takes a lead email, runs CompanyEnrich API calls (person lookup, company enrichm
 ## Deploy
 
 ### One-click deploy
-
+If you don't have a Cloudflare account, sign up at dash.cloudflare.com first.
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/CompanyEnrich/lead-research-agent)
 
 ### Manual deploy
@@ -28,8 +28,6 @@ npm install -g wrangler
 ```
 
 #### 2. Login to Cloudflare
-
-If you don't have a Cloudflare account, sign up at [dash.cloudflare.com](https://dash.cloudflare.com) first.
 
 ```bash
 wrangler login
